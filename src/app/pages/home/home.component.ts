@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,34 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 export class HomeComponent implements AfterViewInit {
   constructor(private el: ElementRef) {}
 
-  ngAfterViewInit(): void {
+  @ViewChild('heroVideo') video!: ElementRef<HTMLVideoElement>;
+
+  ngAfterViewInit() {
+    const vid = this.video.nativeElement;
+
+    const playVideo = () => {
+      vid.play().then(() => {
+        // console.log('playing');
+      }).catch(() => {
+        // Retry if blocked
+        setTimeout(playVideo, 300);
+      });
+    };
+  
+    // Force load (important on refresh)
+    vid.load();
+  
+    // Best event (waits for enough buffer)
+    vid.oncanplaythrough = playVideo;
+  
+    // Backup triggers
+    vid.onloadeddata = playVideo;
+  
+    // Final fallback
+    setTimeout(playVideo, 1000);
+
+    
+
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
