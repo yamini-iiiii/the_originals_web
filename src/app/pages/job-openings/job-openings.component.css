@@ -1,0 +1,340 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ───────────────────────────────────────────
+   Utility
+   ─────────────────────────────────────────── */
+   .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-inline: 1rem;
+    width: 100%;
+    max-width: 1400px; 
+    margin-inline: auto;
+    gap: 3rem;
+  }
+  
+  /* ───────────────────────────────────────────
+     SECTION 1 – Intro
+     ─────────────────────────────────────────── */
+  .intro {
+    padding-block: 4rem 2rem;
+    background: #f5f5f5;
+    padding-inline: 5vw;
+  }
+  
+  .intro__heading {
+    flex: 1 1 60%;
+    font-weight: 900;
+    font-size: 5rem;
+    line-height: 1.1;
+  }
+  
+  .intro__media {
+    flex: 1 1 40%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+  }
+  
+  .intro p {
+    max-width: 42ch;
+  }
+  
+  .intro img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+  }
+  
+  /* ───────────────────────────────────────────
+     SECTION 2 – Openings
+     ─────────────────────────────────────────── */
+  .openings {
+    padding-block: 4rem;
+    padding-inline: 5vw;
+  }
+  
+  /* Left column: job list gets more width */
+  .openings__list {
+    flex: 0 0 50%;
+  }
+  
+  /* Right column: image pushed fully right */
+  .openings__image {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* push image to far right */
+  }
+  
+  .openings__image img {
+    width: 100%;
+    max-width: 700px;           /* cap actual image width */
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* ───────────────────────────────────────────
+     Job card (inline title + meta)
+     ─────────────────────────────────────────── */
+     .job-card {
+      display: flex;                /* ⬅️ inline layout */
+      justify-content: space-between; /* ⬅️ push title and meta to opposite ends */
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.25rem;
+      transition: box-shadow 0.2s ease;
+      cursor: pointer;
+      text-align: left;
+    }
+    
+    .job-card:hover,
+    .job-card:focus-visible {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      outline: none;
+    }
+    
+    .job-card h3 {
+      font-size: 1.25rem;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;                      /* ⬅️ take available space */
+    }
+
+    .job-card h3:hover {
+      text-decoration: underline;
+    }    
+    .job-card .meta {
+      font-size: 1rem;
+      color: #444;
+      font-weight: 400;
+      white-space: nowrap;         /* ⬅️ keep on one line */
+      margin-left: 2rem;
+      flex-shrink: 0;              /* ⬅️ prevent shrinking on small screens */
+    }
+    
+  
+  /* ───────────────────────────────────────────
+     Mobile tweaks
+     ─────────────────────────────────────────── */
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .wrapper {
+      flex-direction: column;
+      padding-inline: 0rem;
+      gap: 0rem;
+      width: 95%;
+    }
+
+    .intro__heading {
+      text-align: center;
+      font-size: clamp(2rem, 6vw, 3rem); /* responsive sizing */
+      margin-bottom: 1rem;               /* reduce gap below heading */
+      word-break: break-word;           /* prevent overflow */
+    }
+  
+    .intro__media {
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.5;
+      padding-inline: 0.5rem;           /* optional tighter padding for text */
+    }
+
+    .openings__list,
+    .openings__image {
+      flex: 1 1 100%;
+    }
+  
+    .job-card {
+      flex-direction: column;
+      align-items: flex-start;
+      /* gap: 0.25rem; */
+    }
+  
+    .job-card .meta {
+      margin-left: 0;
+    }
+  }
+
+  
+  .close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    color: #000;
+  }
+  
+  .job-popup h2 {
+    margin-top: 0;
+  }
+  
+  .job-popup .description {
+    margin-top: 1rem;
+    color: #444;
+  }
+  
+
+  .apply-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+  }
+  
+  .apply-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  
+  .apply-btn:hover {
+    background-color: #333;
+  }
+  
+  .or,
+  .text {
+    color: #444;
+    font-weight: 400;
+  }
+  
+  .email-link {
+    color: #0069ff;
+    font-weight: 500;
+    text-decoration: underline;
+    word-break: break-word;
+  }
+  
+
+
+  .job-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* ✅ allow scrolling if content is too tall */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem; /* ✅ add padding to prevent sticking to edges */
+    z-index: 1005;
+  }
+  
+  .job-popup {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+  }
+  
+  .job-popup form {
+    padding-right: 1.5rem;  /* Add right spacing */
+  }
+  
+  .job-popup form label {
+    font-weight: bold;
+    font-size: 12px;
+    color: #454444;
+  }
+  .job-popup form input,
+  .job-popup form textarea {
+    width: 100%;
+    padding: 0.4rem 0.6rem; /* reduced padding */
+    font-size: 0.9rem;       /* smaller font */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .job-popup form button[type="submit"] {
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+  }
+  
+  .job-popup form button[type="submit"]:hover {
+    background: #333;
+  }
+  
+  .invalid input,
+.invalid file,
+.invalid textarea {
+  border: 2px solid #ed706e !important;
+}
+
+.job-heading{
+  margin-top: -5px;
+}
+
+/* Error message for required fields */
+.error {
+  color: #ed706e;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  font-weight: 700;
+}
+
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .job-popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align to top */
+      padding: 4rem 1rem 2rem;  /* Top padding keeps it below header */
+      z-index: 999;
+    }
+    
+    .job-popup {
+      width: calc(95% - 2rem); /* Keeps horizontal spacing */
+      max-height: 90vh;          /* Limits height on small screens */
+      overflow-y: auto;          /* Enables scroll if content exceeds height */
+      padding: 1rem;
+      margin: 8vh auto;          /* Adds spacing from top and bottom */
+      max-height: 90vh;              /* ✅ Limit total popup height */
+      overflow-y: auto;              /* ✅ Scroll form if content overflows */
+    }
+  
+    .job-popup h2 {
+      font-size: 1.25rem;
+    }
+  
+    .job-popup .description {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .thank-you-message {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+  }
+  

@@ -1,0 +1,78 @@
+<section class="work-section">
+    <div class="work-wrapper">
+        <div class="work-left">
+        <h2>
+            <span>WORK</span>
+        </h2>
+        </div>
+        <div class="work-right">
+        <p> 
+            We create the Cultural Power brands need, to have the impact they want.
+        </p>
+    </div>
+    </div>
+</section>
+
+<section class="service-filter-section">
+  <div class="custom-select-wrapper">
+    <select id="service" name="service" [(ngModel)]="selected_service" (change)="selectService()">
+      <option value="all">All Work</option>
+      <option [value]="item.url" *ngFor="let item of services">{{ item.name }}</option>
+    </select>
+  </div>
+</section>
+
+
+<section class="work-cards-section">
+  <div class="work-cards-wrapper">
+
+    <!-- All services -->
+    <ng-container *ngIf="selected_service == 'all'">
+      <ng-container *ngFor="let service of data">
+        <ng-container *ngFor="let media of service.media">
+          <div class="work-card">
+            <img [src]="media.image" [alt]="media.title">
+            <div class="card-content">
+              <span class="card-brand">{{ media.brand }}</span>
+              <h3 class="card-title">{{ media.title }}</h3>
+              <div class="type-wrapper animate-type">
+                <p
+                  class="card-meta"
+                  *ngIf="currentTypes[service.service_name]"
+                  [@slideUp]="typeIndices[service.service_name]">
+                  {{ currentTypes[service.service_name] }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <!-- Selected service -->
+    <ng-container *ngIf="selected_service != 'all' && data">
+      <ng-container *ngFor="let media of data.media">
+        <div class="work-card">
+          <img [src]="media.image" [alt]="media.title">
+          <div class="card-content">
+            <span class="card-brand">{{ media.brand }}</span>
+            <h3 class="card-title">{{ media.title }}</h3>
+            <!-- <div *ngFor="let type of data.types">
+              <p class="card-meta">{{ type }}</p>
+            </div> -->
+            <div class="type-wrapper animate-type">
+              <p
+                *ngIf="currentType as t"
+                class="card-meta"
+                [@slideUp]="t">{{ t }}
+              </p>
+            </div>
+            
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </div>
+</section>
+  

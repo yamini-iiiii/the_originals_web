@@ -1,0 +1,153 @@
+<!-- SECTION 1 – Intro -->
+<section class="intro">
+    <div class="wrapper">
+      <h2 class="intro__heading">Join Our Team</h2>
+  
+      <div class="intro__media">
+        <p>
+          We’re a culture‑first company that believes great work begins with
+          great people. Explore open roles and build the next big thing with us.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- SECTION 2 – Current openings -->
+  <section class="openings">
+    <div class="wrapper">
+    <!-- Job Cards -->
+    <div class="openings__list">
+      <article
+        *ngFor="let job of jobs | slice: 0 : 3"
+        class="job-card"
+        tabindex="0"
+        (click)="openJob(job)"
+      >
+        <h3>{{ job.title }}</h3>
+        <p class="meta">
+          <span>{{ job.location }}</span> &bull;
+          <span>{{ job.type }}</span>
+        </p>
+      </article>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="job-popup-backdrop" *ngIf="selectedJob" (click)="closePopup1()">
+      <div class="job-popup" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closePopup1()">×</button>
+        
+        <h2>{{ selectedJob.title }}</h2>
+        <p><strong>{{ selectedJob.location }}</strong> • {{ selectedJob.type }}</p>
+        
+        <p class="description">{{ selectedJob.description }}</p>
+
+        <!-- Apply Now button -->
+        <div class="apply-inline">
+          <button class="apply-btn" (click)="openApplicationForm()">Apply Now</button>
+          <span class="or">OR</span>
+          <span class="text">Drop us your portfolio</span>
+          <a class="email-link" href="mailto:theoriginalsmediaproductions@gmail.com">
+            theoriginalsmediaproductions@gmail.com
+          </a>
+        </div>
+        
+      </div>
+    </div>
+
+      <!-- Application Form Modal -->
+      <div class="job-popup-backdrop" *ngIf="showApplicationForm" (click)="closePopup2()">
+        <div class="job-popup" (click)="$event.stopPropagation()">
+          <button class="close-btn" (click)="closePopup2()">×</button>
+      
+          <h3 class="job-heading">{{ applyJob?.title }}</h3>
+      
+          <div *ngIf="thankYou" class="thank-you-message">
+            <p>Thank you! We’ll get back to you soon.</p>
+          </div>
+
+          <form #f="ngForm" (ngSubmit)="submit(f)" *ngIf="!thankYou">
+      
+            <div [class.invalid]="fullNameErr">
+              <label for="fullName">Full Name*</label>
+              <input id="fullName"
+              name="fullName"
+              [(ngModel)]="fullName"
+              type="text"
+              (focus)="removeErrorMsg('fullName')"
+              inputmode="text" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\s{2,}/g, ' ');" />
+              <small *ngIf="fullNameErr=='required'" class="error">This field is required</small>
+            </div>
+
+          <div [class.invalid]="emailErr">
+            <label for="email">Email*</label>
+            <input id="email"
+            name="email"
+            [(ngModel)]="email"
+            type="text"
+            (focus)="removeErrorMsg('email')" />
+            <small *ngIf="emailErr=='required'" class="error">This field is required</small>
+            <small *ngIf="emailErr=='invalid'" class="error">Please enter a valid email address</small>
+          </div>
+            
+          <div [class.invalid]="mobileErr">
+            <label for="mobile">Mobile*</label>
+            <input id="mobile"
+            name="mobile"
+            [(ngModel)]="mobile"
+            type="text"
+            (focus)="removeErrorMsg('mobile')"
+            minlength="10"
+            maxlength="10"
+            pattern="[6789][0-9]{9}"
+            inputmode="numeric"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+            (keypress)="numbersOnly($event)" />
+            <small *ngIf="mobileErr=='required'" class="error">This field is required</small>
+            <small *ngIf="mobileErr=='invalid'" class="error">Please enter a valid mobile</small>
+          </div>
+            
+      
+          <div [class.invalid]="resumeErr">
+            <label for="resume">Upload Resume/Portfolio*</label>
+            <input
+            id="resume"
+            name="resume"
+            type="file"
+            accept=".pdf,.doc,.docx"
+            (focus)="removeErrorMsg('resume')"
+            (change)="handleResume($event)"
+          />
+          <small *ngIf="resumeErr=='required'" class="error">Please attach your resume/portfolio</small>
+          <small *ngIf="resumeErr=='type'"     class="error">Only PDF, DOC, or DOCX allowed</small>
+          <small *ngIf="resumeErr=='size'"     class="error">Max file size 5 MB</small>
+          </div>
+          
+          <div>
+            <label for="linkedIn">LinkedIn Profile</label>
+            <input id="linkedIn" name="LinkedIn" [(ngModel)]="linkedInUrl" />
+          </div>
+      
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" rows="4" [(ngModel)]="message"></textarea>
+          </div>
+      
+      
+            <button type="submit">Submit Application</button>
+          </form>
+        </div>
+      </div>
+
+  
+      <!-- RIGHT – Illustration / photo -->
+      <div class="openings__image">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1683865776032-07bf70b0add1?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Our awesome team"
+        />
+      </div>
+    </div>
+
+</section>
+  

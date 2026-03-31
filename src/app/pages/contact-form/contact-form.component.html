@@ -1,0 +1,125 @@
+<div class="contact-form-container">
+
+<div class="contact-section">
+  <div class="contact-form" id="contact-form">
+    <h2>LET'S TALK</h2>
+    <p class="required-note">* Required</p>
+
+    <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+
+      <!-- Full Name -->
+      <div class="form-group" [class.invalid]="fullNameErr">
+        <label for="fullName">FULL NAME*</label>
+        <input
+          id="fullName"
+          name="fullName"
+          [(ngModel)]="fullName"
+          type="text"
+          (focus)="removeErrorMsg('fullName')"
+          inputmode="text" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\s{2,}/g, ' ');"
+        />
+        <small *ngIf="fullNameErr=='required'" class="error">This field is required</small>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group" [class.invalid]="emailErr">
+        <label for="email">EMAIL*</label>
+        <input
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          type="text"
+          (focus)="removeErrorMsg('email')"
+        />
+        <small *ngIf="emailErr=='required'" class="error">This field is required</small>
+        <small *ngIf="emailErr=='invalid'" class="error">Please enter a valid email address</small>
+      </div>
+
+      <!-- Mobile -->
+      <div class="form-group" [class.invalid]="mobileErr">
+        <label for="mobile">MOBILE*</label>
+        <input
+          id="mobile"
+          name="mobile"
+          [(ngModel)]="mobile"
+          type="text"
+          (focus)="removeErrorMsg('mobile')"
+          minlength="10"
+          maxlength="10"
+          pattern="[6789][0-9]{9}"
+          inputmode="numeric"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+          (keypress)="numbersOnly($event)"
+        />
+        <small *ngIf="mobileErr=='required'" class="error">This field is required</small>
+        <small *ngIf="mobileErr=='invalid'" class="error">Please enter a valid mobile</small>
+      </div>
+
+      <!-- Contact Reason (optional) -->
+      <div class="form-group" [class.invalid]="contactReasonErr">
+        <label for="reason">CONTACT REASON*</label>
+        <select style="color: black;"
+          id="reason"
+          name="reason"
+          [(ngModel)]="contactReason"
+          (focus)="removeErrorMsg('contactReason')"
+        >
+          <option value="" disabled selected>Select a reason</option>
+          <option value="Business Inquiry">Business Inquiry</option>
+          <option value="Media / Press Inquiry">Media / Press Inquiry</option>
+          <option value="other">Other</option>
+        </select>
+        <small *ngIf="contactReasonErr=='required'" class="error">Please select an item from list</small>
+      </div>
+
+      <!-- Message (optional) -->
+      <div class="form-group">
+        <label for="message">MESSAGE</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          placeholder="How can we assist?"
+          [(ngModel)]="message"
+        ></textarea>
+      </div>
+
+      <!-- Checkbox One (optional) -->
+      <div class="form-group checkbox">
+        <label>
+          <input
+            type="checkbox"
+            name="commConsent"
+            [(ngModel)]="commConsent"
+          />
+          I agree to receive communications from TheOriginals.
+        </label>
+      </div>
+
+      <!-- Checkbox Two (required) -->
+      <div class="form-group checkbox">
+        <label>
+          <input
+            type="checkbox"
+            name="checkTwo"
+            [(ngModel)]="checkTwo"
+            (focus)="removeErrorMsg('checkTwo')"
+            (change)="removeErrorMsg('checkTwo')"
+          />
+          I agree to allow TheOriginals to store and process my personal data.
+        </label>
+        <small *ngIf="checkTwoErr=='required'" class="error">
+          Please check this box if you want to proceed
+        </small>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <div class="contact-thankyou" id="contact-thankyou" style="display:none;">
+    <h1>THANKS!</h1>
+    <h3>We'll get back to you soon.</h3>
+  </div>
+</div>
+</div>

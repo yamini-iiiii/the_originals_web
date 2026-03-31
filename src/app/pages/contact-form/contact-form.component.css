@@ -1,0 +1,162 @@
+.contact-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+
+.contact-section {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    padding: 60px 30px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  
+  .contact-form {
+    flex: 1 1 50%;
+    max-width: 480px; /* Reduced from 500px */
+    margin-top: -105px; /* Optional: adjust vertical alignment */
+  }
+  
+  .contact-form h2 {
+    font-size: 48px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #000, #474646);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  
+  .required-note {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 6px 8px; /* reduced from 10px 12px */
+    font-size: 14px;   /* slightly smaller text */
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 60px; /* reduce height */
+  }
+  
+  .contact-form {
+    flex: 1 1 50%;
+    max-width: 440px;
+    margin-top: -60px;
+    padding-bottom: 10px; /* add a bottom constraint */
+  }
+  
+  .checkbox label {
+    font-size: 14px; /* slightly smaller checkboxes */
+    line-height: 1.2;
+  }
+  
+  .submit-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #333;
+  }
+  /* Mobile */
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .contact-section {
+      flex-direction: column;
+      padding: 40px -5px;
+    }
+    .contact-form-container {
+      margin-top: -60px;
+      padding: 40px 0px;
+    }
+  
+    .contact-form h2 {
+      font-size: 40px;
+    }      
+    .contact-form {
+      flex: 1 1 100%;
+      width: 100%;
+      margin-top: 0 !important;
+      padding: 0 0px;  
+      box-sizing: border-box;
+    }
+  }
+  
+/* Highlight fields that are invalid and touched */
+.invalid input,
+.invalid select,
+.invalid textarea {
+  border: 2px solid #ed706e !important;
+}
+
+/* Error message for required fields */
+.error {
+  color: #ed706e;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  font-weight: 700;
+}
+
+/* Slight visual tweak to required checkboxes */
+.invalid input[type="checkbox"] {
+  outline: 2px solid #ed706e;
+}
+
+
+.contact-thankyou h1 {
+  font-size: 98px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.contact-thankyou h3 {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  color: #444;
+}
+
+@media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+  .contact-thankyou h1 {
+    font-size: 60px;
+  }
+}

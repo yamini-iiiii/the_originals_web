@@ -1,0 +1,65 @@
+<section class="services-page">
+
+    <!-- Hero Banner with Video -->
+    <section class="hero-section">
+      <video
+        src="https://videos.ctfassets.net/teibi0nrv2xi/CCFJOBKLLwnt678LoI921/c9ac70b42b46ddd3281006bd70c6fa62/MCS_Global_Showreel_V24__1_.mp4"
+        autoplay muted loop playsinline preload="auto"></video>
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>SERVICES &<br />CAPABILITIES</h1>
+      </div>
+    </section>
+  
+    <!-- Sticky Tabs -->
+    <nav class="service-tabs">
+      <ng-container *ngFor="let item of services">
+        <a [attr.data-target]="item.section_id"><span>{{ item.name }}</span></a>
+      </ng-container>
+    </nav>
+  
+    <!-- Services Sections -->
+     <ng-container *ngFor="let item of data">
+      <section class="services-section bg-white reveal" [id]="item.section_id">
+        <div class="services-top">
+          <div class="services-number-title">
+            <h2 class="services-number">{{ item.id }}</h2><br>
+            <h3 class="services-title">{{ item.heading }}</h3>
+          </div>
+          <p class="services-description">
+            {{ item.description }}
+          </p>
+        </div>
+      
+        <div class="services-bottom">
+          <div class="services-list-section">
+            <ul class="services-list" *ngFor="let i of item.service_types">
+              <li><a [href]="i.url">{{ i.title }}</a></li>
+            </ul>
+            <a [href]="item.explore_work" class="explore-link"><span>Explore Work</span></a>
+          </div>
+      
+          <div class="services-video-section">
+            <video class="services-video" [src]="item.video_url"
+              autoplay muted loop playsinline preload="auto"></video>
+          </div>
+        </div>
+      </section>
+     </ng-container>
+
+      
+    <!-- contact -->
+    <section class="home-contact-section contact-section reveal">
+        <!-- Background Image -->
+        <img src="../../../assets/reel2.jpeg" alt="Contact Us" class="contact-bg" />
+      
+        <!-- Form Overlay -->
+        <div class="contact-overlay">
+          <div class="contact-form-wrapper">
+            <app-contact-form></app-contact-form>
+          </div>
+        </div>
+      </section>
+  
+  </section>
+  

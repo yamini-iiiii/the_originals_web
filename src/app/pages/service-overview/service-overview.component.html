@@ -1,0 +1,52 @@
+
+<div class="main-heading">
+    <h1>{{ data.heading }}</h1>
+</div>
+
+<div>
+    <video [src]="data.video_url" autoplay muted loop playsinline preload="auto"></video>
+</div>
+
+
+<!-- Services Sections -->
+<section class="services-section bg-white reveal">
+    <div class="services-left">
+        <h3 class="services-title">SERVICES</h3>
+        <ul class="services-list" *ngFor="let i of data.service_types">
+            <li><a [href]="i.url">{{ i.title }}</a></li>
+        </ul>
+    </div>
+    <div class="services-right">
+        <p class="services-description">
+            {{ data.description }}
+        </p>
+    </div>
+</section>
+
+<section class="our-work-section">
+    <div class="work-header">
+      <div class="work-left">
+        <h1>OUR WORK</h1>
+      </div>
+      <div class="work-right">
+        <a href="/works">
+            <h5>See all work →</h5>
+        </a>          
+      </div>
+    </div>
+  
+    <div class="work-images">
+      <div *ngFor="let item of work.media.slice(0, 3)" class="work-image">
+        <img [src]="item.image" alt="work" />
+        <span class="card-brand">{{ item.brand }}</span>
+        <h3 class="card-title">{{ item.title }}</h3>
+        <!-- <div *ngFor="let type of work.types">
+            <p class="card-meta">{{ type }}</p>
+        </div> -->
+        <div class="type-wrapper animate-type">
+            <p class="card-meta">{{ currentType }}</p>
+        </div>          
+      </div>
+    </div>
+  </section>
+  

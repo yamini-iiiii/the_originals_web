@@ -1,0 +1,442 @@
+.about-page {
+    font-family: 'Poppins', sans-serif;
+  }
+
+/* Common video + overlay */
+.video-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background: black;
+  }
+  
+  .video-bg {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+  
+  .video-overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .play-button {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  
+  .play-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .watch-text {
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 8px;
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .watch-text {
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .hero-section:first-of-type {
+      margin-top: 80px;
+    }
+  }
+
+  /* Intro */
+.intro-section {
+    padding: 60px 5vw;
+    background: white;
+  }
+  
+  .intro-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .intro-left,
+  .intro-right {
+    flex: 1 1 45%;
+  }
+  
+  .intro-left h1 {
+    font-size: 3.0rem;
+    font-weight: 700;
+    margin-top: 0px
+  }
+  
+  .intro-right p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #252424;
+  }
+  
+  /* Responsive tweak */
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .intro-wrapper {
+      flex-direction: column;
+    }
+  
+    .intro-left,
+    .intro-right {
+      flex: 1 1 100%;
+    }
+  
+    .intro-left h1 {
+      font-size: 2rem;
+    }
+
+    .intro-right {
+      margin-top: -60px; /* adjust as needed */
+    }
+  }
+  
+  
+  /* Carousel */
+  .carousel-wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 40px 5vw;
+  }
+  
+  .carousel-wrapper img {
+    max-width: 300px;
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
+  
+  /* original Power Section */
+  .original-pwr-section {
+    padding: 80px 5vw;
+  }
+  
+  .original-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between; /* ensures space distribution */
+    gap: 50px;
+  }
+  
+  .original-left {
+    flex: 1 1 45%;
+    min-width: 300px;
+  }
+
+  .original-right {
+    flex: 1 1 50%;
+    min-width: 300px;
+    margin-top: -26px;
+  }
+  
+  .original-left h2 {
+    font-size: 100px;
+    font-weight: 1000;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin: 0;
+    word-break: break-word;
+    letter-spacing: -2px;
+  }
+  
+  .original-left h2 span {
+    display: block;
+  }
+  
+  .original-right p {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: #000; /* darker text */
+    font-weight: 500;
+  }
+  
+  
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .original-wrapper {
+      flex-direction: column;
+    }
+  
+    .original-left h2 {
+      font-size: 60px;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+  
+    .original-right p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+  }
+  
+  .bg-yellow {
+    background-color: #ffe100;
+  }
+  
+  .bg-gray {
+    background-color: #f5f5f5;
+  }
+  
+  /* Info Section */
+  .info-section {
+    padding: 60px 7vw;
+    background: white;
+  }
+  
+  .info-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .info-left{
+    flex: 1 1 45%;
+  }
+
+  .info-right {
+    flex: 1 1 45%;
+    max-width: 565px; /* 👈 This limits the form width */
+  }
+  
+  .info-left h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-top: 0px
+  }
+  
+  /* .info-right p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #252424;
+  } */
+
+  .info-right app-contact-form {
+    width: 100%;
+    max-height: 500px; /* Limit overall form height */
+    overflow: auto;    /* Add scroll if needed */
+    padding: 10px;
+    transform: scale(0.95);
+    transform-origin: top left;
+  }
+  
+  @media (max-width: 768px) {
+    .info-left h1 {
+      font-size: 2.5rem;
+    }
+  }
+  /* Responsive tweak */
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .info-wrapper {
+      flex-direction: column;
+    }
+  
+    /* .info-left,
+    .info-right {
+      flex: 1 1 100%;
+    } */
+
+    .info-left {
+      flex: 1 1 100%;
+    }
+
+    .info-right {
+      margin-top: -60px; /* adjust as needed */
+    }
+
+    .info-right {
+      max-width: 100%;
+      transform: scale(1); /* reset on mobile if needed */
+      margin-top: -60px;
+    }
+  }
+  
+
+  /* ========================================
+   Yellow gradient background for info‑section
+   ======================================== */
+.bg-yellow-gradient {
+  /* soft yellow – tweak the two stops to taste */
+  background: linear-gradient(135deg, #ffe10014 0%, #e9d734 100%);
+  /* make sure the top padding doesn’t disappear into the previous section */
+  padding: 60px 5vw;
+}
+
+  
+/* ----- Leadership Layout & Styling ----- */
+.leadership-section {
+  padding: 80px 5vw;
+  background: #f0efec;
+}
+
+/* BIG, BOLD, DESIGN FONT */
+.leadership-title {
+  font-size: clamp(3rem, 4vw, 8rem);
+  font-weight: 1000;
+  margin: 0 0 4rem 0;
+  line-height: 0.9;
+  letter-spacing: -1px;
+  word-spacing: 8px;
+}
+
+
+/* grid: exactly 3 cards, centred */
+.leader-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive 4-per-row */
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card styling remains unchanged */
+.leader-card {
+  text-align: center;
+}
+
+.leader-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.leader-card h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.leader-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
+
+/* Responsive: Stack on small screens */
+@media (max-width: 768px){
+  .leader-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .leadership-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+  
+
+/* === Auto‑scroll Marquee === */
+.about-carousel {
+    overflow: hidden;          /* hide scrollbar */
+    padding: 2rem 0;
+    background: #fff;
+  }
+  
+  .carousel-track {
+    display: flex;
+    gap: 2rem;
+    /* The trick: move the whole track left forever */
+    animation: scroll-left 25s linear infinite;
+  }
+  
+  .carousel-img {
+    width: 25vw;               /* responsive width */
+    max-width: 280px;
+    flex-shrink: 0;
+    border-radius: 12px;
+  }
+  
+  /* Keyframes: translate the width of one full image‑set */
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Optional responsive tweak */
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .carousel-img {
+      width: 60vw;
+    }
+  }
+  
+  
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background-color: #f7f7f7;
+  }
+  
+  .leader-card {
+    text-align: center;
+  }
+  
+  .leader-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+ 
+  
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1s ease, transform 1s ease;
+    will-change: opacity, transform;
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .original-left h5 {
+    font-size: 58px;
+    font-weight: 1000;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin: 0;
+    word-break: break-word;
+    letter-spacing: -2px;
+  }
+  
+  .original-left h5 span {
+    display: block;
+  }
+
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {  
+    .original-left h5 {
+      font-size: 30px;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+  }

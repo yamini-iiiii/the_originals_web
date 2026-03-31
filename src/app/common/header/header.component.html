@@ -1,0 +1,38 @@
+<nav class="navbar" [class.open]="mobileOpen">
+    <!-- logo -->
+    <a routerLink="/" class="logo" (click)="closeMobileMenu(); scrollToTop()">
+      <!-- replace with your actual asset path / file type -->
+      <img src="../../../assets/Black_logo.png" alt="The Originals logo" />
+    </a>
+  
+    <!-- hamburger for mobile -->
+    <button
+      class="menu-toggle"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  
+    <!-- desktop / off‑canvas menu -->
+    <ul class="nav-links">
+        <li><a routerLink="/" (click)="closeMobileMenu(); scrollToTop()">Home</a></li>
+        <li><a routerLink="/works" (click)="closeMobileMenu(); scrollToTop()">Works</a></li>
+        <li><a routerLink="/about" (click)="closeMobileMenu(); scrollToTop()">About</a></li>
+        <li><a routerLink="/services" (click)="closeMobileMenu(); scrollToTop()">Services</a></li>
+      
+      
+        <li><a routerLink="/careers"  (click)="closeMobileMenu(); scrollToTop()">Careers</a></li>
+        <li><a routerLink="/updates"  (click)="closeMobileMenu(); scrollToTop()">Updates</a></li>
+
+        <!-- Contact link shown only on mobile -->
+        <li class="mobile-contact">
+          <a routerLink="/contact" class="mobile-contact-btn" (click)="closeMobileMenu(); scrollToTop()">Contact</a>
+        </li>
+      </ul>
+      
+  
+    <!-- contact button -->
+    <a routerLink="/contact" class="contact-btn" (click)="scrollToTop()">Contact</a>
+  </nav>
+  

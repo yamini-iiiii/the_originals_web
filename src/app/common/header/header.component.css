@@ -1,0 +1,306 @@
+/* ───────────────────────────────
+   1.  Global header layout
+   ─────────────────────────────── */
+
+   .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;             /* remove top-bottom padding */
+    height: 72px;                /* fixed height */
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+    flex-wrap: wrap;
+
+    /* position: relative; */
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+  }
+
+  /* Hide by default */
+.mobile-home {
+  display: none;
+}
+
+/* Show only in mobile view */
+@media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+  .mobile-home {
+    display: block;
+  }
+}
+
+  /* Default: hide the mobile button */
+  .mobile-contact { display: none; }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    height: 100%;   
+    padding-left: 0 !important;            /* full height of navbar */
+  }
+  
+  .logo img {
+    height: 300px;           /* slightly taller than before */
+    width: auto;
+    max-width: 300px;
+  }
+  
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    .navbar {
+      padding-left: 0 !important;  /* override padding if needed */
+    }
+  
+    .logo {
+      margin-left: 0 !important;   /* remove any unintended spacing */
+      padding-left: 0 !important;
+    }
+  
+    .logo img {
+      height: 155px;
+      max-width: 160px;
+      display: block;
+    }
+  }
+  
+  
+  
+  /* ───────────────────────────────
+     2.  Main nav links
+     ─────────────────────────────── */
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    margin-left: -115px;
+  }
+
+  .nav-links li{
+    font-weight: 500;
+  }
+  
+  .nav-links li a,
+  .drop-btn {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* ───────────────────────────────
+     3.  Contact button
+     ─────────────────────────────── */
+  
+  .contact-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 24px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 2px;
+  }
+  
+  /* ───────────────────────────────
+     4.  Hamburger toggle (mobile)
+     ─────────────────────────────── */
+  
+  .menu-toggle {
+    display: none;                  /* hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .menu-toggle span {
+    height: 2px;
+    width: 24px;
+    background: #000;
+    margin-bottom: 4px;
+  }
+  
+  /* ───────────────────────────────
+     5.  Dropdown (“Services”)
+     ─────────────────────────────── */
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .drop-btn {
+    background: none;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;   /* arrow colour */
+    transition: transform 0.25s;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    min-width: 180px;
+    background: #fff;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    display: none;                 /* hidden by default */
+    z-index: 100;
+  }
+  
+  .dropdown-menu li a {
+    display: block;
+    padding: 8px 24px;
+    white-space: nowrap;
+  }
+  
+  /* show when <li> has .open (mobile click) */
+  .dropdown.open .dropdown-menu { display: block; }
+  .dropdown.open .caret          { transform: rotate(180deg); }
+  
+  /* ───────────────────────────────
+     6.  Desktop-specific dropdown
+     ─────────────────────────────── */
+  @media (min-width: 769px) {
+    /* Hover reveals dropdown on desktop */
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown:hover .caret         { transform: rotate(180deg); }
+  }
+  
+  /* ───────────────────────────────
+     7.  Mobile (≤768 px)
+     ─────────────────────────────── */
+  @media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+    /* stack nav links vertically in an off‑canvas panel */
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      display: none;    
+      margin-left: 0;           /* hidden until hamburger click */
+    }
+
+    
+  
+    /* show when navbar itself has .open (Angular flag) */
+    .navbar.open .nav-links { display: flex; }
+
+    .navbar.open .nav-links{
+      background:#fff;        /* keeps text readable over video */
+    }
+  
+    .menu-toggle { display: flex; }
+  
+    .contact-btn { display: none; }        /* hide contact if you wish */
+  
+    /* Dropdown inside mobile panel */
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      padding-left: 16px;          /* slight indent */
+    }
+  
+    .caret { display: none; }      /* hide arrow on mobile for cleaner look */
+  }
+  
+
+  /* ==========  MOBILE fine‑tuning  ========== */
+@media (max-width: 768px), (min-width: 768px) and (max-width: 1024px) {
+
+  .navbar.open .nav-links {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 72px;                 /* height of the navbar */
+    width: 100%;
+    z-index: 999;
+    margin-top: 0;
+    padding: 0 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.10);
+
+    left: 64px;          /* 64‑px gap from left  (adjust if you want more/less) */
+    right: 0;            /* anchor to the right edge */
+    width: auto;         /* allow it to size from right edge */
+    max-width: 80%;      /* optional: never wider than 80 % of viewport */
+  }
+
+  .navbar {
+    position: fixed;          /* keeps navbar + dropdown fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  .caret{
+    display:inline-block;      /* restore arrow */
+  }
+
+  /* 1.  Add left/right padding so items don’t hug the screen edge */
+  .nav-links {                                   /* the slide‑down panel  */
+    padding: 0 24px;                             /* same as desktop bar  */
+  }
+
+  /* 2.  Make every primary link look identical (a + button) */
+  .nav-links li a:not(.mobile-contact-btn),
+  .nav-links .drop-btn {
+    display: block;           /* full‑width tap target          */
+    padding: 12px 0;          /* vertical rhythm                */
+    font-weight: 600;         /* match other links’ weight      */
+    text-align: left;
+    width: 100%;
+  }
+
+  /* 3.  Optional: indent submenu items a little more than now */
+  .dropdown-menu {
+    padding-left: 32px;       /* submenu indent                 */
+  }
+
+  /* Hide desktop button */
+  .contact-btn { display: none; }
+
+  /* Show the mobile version */
+  .mobile-contact {
+    display: block;
+    padding: 12px 0;
+  }
+  
+  .mobile-contact-btn {
+    background: #000;
+    color: #fff !important;
+    padding: 10px 24px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    width: auto; /* <<< THIS IS KEY */
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  
+  
+  /* slight hover/active feedback */
+  .mobile-contact-btn:hover,
+  .mobile-contact-btn:active {
+    background: #333;
+  }
+}
