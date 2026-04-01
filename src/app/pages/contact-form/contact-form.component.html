@@ -15,7 +15,7 @@
           name="fullName"
           [(ngModel)]="fullName"
           type="text"
-          (focus)="removeErrorMsg('fullName')"
+          (focus)="removeErrorMsg('fullName')" maxlength="80"
           inputmode="text" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\s{2,}/g, ' ');"
         />
         <small *ngIf="fullNameErr=='required'" class="error">This field is required</small>

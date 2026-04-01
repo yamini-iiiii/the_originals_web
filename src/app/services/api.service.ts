@@ -14,6 +14,6 @@ export class ApiService {
   };
 
   createLead(obj:any) {
-    return this.http.post("http://localhost:3000/api/create-lead", obj);
+    return this.http.post("https://theoriginalsmedia.com/api/create-lead.php", obj);
   }
 }
