@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
 
 interface Job {
   title: string;
@@ -50,9 +51,12 @@ export class JobOpeningsComponent {
   fullNameErr: string='';
   emailErr: string='';
   mobileErr: string='';
+  linkedInErr: string='';
   resumeErr  = '';
-
   thankYou = false;
+  isLoading: boolean = false;
+
+  constructor(private service: ApiService){}
 
   openJob(job: any) {
     this.selectedJob = job;
@@ -95,6 +99,11 @@ export class JobOpeningsComponent {
     this.resumeErr  = '';  // clear any old error instantly (optional)
   }
 
+  isValidLinkedInUrl() {
+    const pattern = /^(https?:\/\/)?(www\.)?linkedin\.com\/.+$/i;
+    return pattern.test(this.linkedInUrl.trim());
+  }
+
   submit(form: NgForm){
     let num=0;
     if(!this.fullName){
@@ -115,6 +124,13 @@ export class JobOpeningsComponent {
     } 
     if(this.mobile && (this.mobile.length<10 || this.isMobileWrong() == 0)){
       this.mobileErr='invalid';
+      num += 1;
+    }
+    if (!this.linkedInUrl) {
+      this.linkedInErr = 'required';
+      num += 1;
+    } else if (!this.isValidLinkedInUrl()) {
+      this.linkedInErr = 'invalid';
       num += 1;
     }
 
@@ -138,27 +154,46 @@ export class JobOpeningsComponent {
       }
 
       if(num==0){
-        this.thankYou = true;
+        if (num == 0) {
 
-        var obj = {
-          name: this.fullName,
-          email: this.email,
-          mobile: this.mobile,
-          message: this.message,
-          linkedin_url: this.linkedInUrl,
-          job_title: this.applyJob?.title,
-          job_type: this.applyJob?.type,
-          job_location: this.applyJob?.location
+          const formData = new FormData();
+        
+          formData.append('name', this.fullName);
+          formData.append('email', this.email);
+          formData.append('mobile', this.mobile);
+          formData.append('message', this.message || '');
+          formData.append('linkedin_url', this.linkedInUrl || '');
+        
+          formData.append('job_title', this.applyJob?.title || '');
+          formData.append('job_type', this.applyJob?.type || '');
+          formData.append('job_location', this.applyJob?.location || '');
+        
+          if (this.resumeFile) {
+            formData.append('resume', this.resumeFile);
+          }
+        
+          this.isLoading = true;
+          // ✅ CALL API
+          this.service.submitJobApplication(formData).subscribe({
+            next: (res: any) => {
+              console.log('SUCCESS', res);
+        
+              this.isLoading = false;
+              this.thankYou = true;
+        
+              setTimeout(() => {
+                this.thankYou = false;
+                this.closePopup2();
+              }, 3000);
+        
+              form.resetForm();
+              this.resumeFile = null;
+            },
+            error: (err) => {
+              console.log('ERROR', err);
+            }
+          });
         }
-        console.log('job',obj)
-
-        setTimeout(() => {
-          this.thankYou = false;
-          this.closePopup2();
-        }, 3000);
-      
-        form.resetForm();
-        this.resumeFile = null;
       }
 
     }
@@ -209,6 +244,9 @@ export class JobOpeningsComponent {
     }
     if(field=='mobile'){
       this.mobileErr='';
+    }
+    if(field=='linkedin'){
+      this.linkedInErr='';
     }
     if(field=='resume'){
       this.resumeErr='';

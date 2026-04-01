@@ -9,11 +9,18 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  // };
 
   createLead(obj:any) {
     return this.http.post("https://theoriginalsmedia.com/api/create-lead.php", obj);
+  }
+
+  submitJobApplication(formData: FormData) {
+    return this.http.post(
+      "https://theoriginalsmedia.com/api/job-application.php",
+      formData
+    );
   }
 }

@@ -57,8 +57,12 @@
       <!-- Application Form Modal -->
       <div class="job-popup-backdrop" *ngIf="showApplicationForm" (click)="closePopup2()">
         <div class="job-popup" (click)="$event.stopPropagation()">
+          <div *ngIf="isLoading" class="loader-overlay">
+            <div class="spinner"></div>
+          </div>
+          
           <button class="close-btn" (click)="closePopup2()">×</button>
-      
+          
           <h3 class="job-heading">{{ applyJob?.title }}</h3>
       
           <div *ngIf="thankYou" class="thank-you-message">
@@ -122,9 +126,21 @@
           <small *ngIf="resumeErr=='size'"     class="error">Max file size 5 MB</small>
           </div>
           
-          <div>
-            <label for="linkedIn">LinkedIn Profile</label>
-            <input id="linkedIn" name="LinkedIn" [(ngModel)]="linkedInUrl" />
+          <div [class.invalid]="linkedInErr">
+            <label for="linkedIn">LinkedIn Profile*</label>
+            <input 
+              id="linkedIn" 
+              name="linkedIn" 
+              [(ngModel)]="linkedInUrl"
+              (focus)="removeErrorMsg('linkedin')"
+            />
+          
+            <small *ngIf="linkedInErr=='required'" class="error">
+              This field is required
+            </small>
+            <small *ngIf="linkedInErr=='invalid'" class="error">
+              Please enter a valid LinkedIn URL
+            </small>
           </div>
       
 
